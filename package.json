@@ -17,11 +17,12 @@
     "rxjs": "5.0.0-beta.0",
     "systemjs": "^0.19.17",
     "tsd": "^0.6.5",
-    "lite-server": "^2.0.1",
-    "zone.js": "0.5.11"
+    "zone.js": "0.5.11",
+    "serve-static" : "^1.10.2"
   },
   "devDependencies": {
     "concurrently": "^1.0.0",
+    "lite-server": "^2.0.1",
     "typescript": "^1.7.5"
   },
   "engines": {
