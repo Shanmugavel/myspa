@@ -1,8 +1,10 @@
 import {Component} from 'angular2/core';
-
+import {LoginComponent} from "./my-login/my-login.component"
 @Component({
     selector: 'my-spa',
-    template: '<h1>App under construction. Please check back later.</h1>'
+    templateUrl : "./app/app.html",
+    directives : [LoginComponent]
+    
 })
 
 export class AppComponent { }

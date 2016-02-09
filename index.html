@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>My SPA</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myspa.css" >
     <!-- IE required polyfills, in this exact order -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
     <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
@@ -26,7 +28,9 @@
       System.import('app/boot').then(null, console.error.bind(console));
     </script>
   </head>
-  <body class="container-fluid">
-    <my-spa>Loading...</my-spa>
+  <body>
+      <div class="container-fluid">
+          <my-spa>Loading...</my-spa>
+      </div>
   </body>
 </html>
