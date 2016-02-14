@@ -1,9 +1,11 @@
 import {Component} from 'angular2/core';
-import {LoginComponent} from "./my-login/my-login.component"
+import {LoginComponent} from "./login/login.component"
+import {HomeComponent} from "./home/home.component"
+
 @Component({
     selector: 'my-spa',
     templateUrl : "./app/app.html",
-    directives : [LoginComponent]
+    directives : [LoginComponent, HomeComponent]
     
 })
 
