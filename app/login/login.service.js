@@ -25,11 +25,12 @@ System.register(['angular2/core', '../logger/logger.service'], function(exports_
                     this._logger.log('Login Service Created!');
                 }
                 LoginService.prototype.login = function (loginModel) {
-                    this._logger.log('UserName::' + loginModel.username);
-                    this._logger.log('Password::' + loginModel.password);
                     loginModel.token = Math.random().toString();
-                    this._logger.log('Token::' + loginModel.token);
-                    return loginModel;
+                    this._logger.log('Returning promise!!');
+                    if ("shan" === loginModel.username && "password" === loginModel.password) {
+                        return Promise.resolve(loginModel);
+                    }
+                    return Promise.reject("Invalid Credentials!");
                 };
                 LoginService = __decorate([
                     core_1.Injectable(), 

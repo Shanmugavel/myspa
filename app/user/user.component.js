@@ -1,4 +1,4 @@
-System.register(["angular2/core"], function(exports_1) {
+System.register(['angular2/core', '../logger/logger.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,28 +8,34 @@ System.register(["angular2/core"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var LoginComponent;
+    var core_1, logger_service_1;
+    var UserComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (logger_service_1_1) {
+                logger_service_1 = logger_service_1_1;
             }],
         execute: function() {
-            LoginComponent = (function () {
-                function LoginComponent() {
+            UserComponent = (function () {
+                function UserComponent(_logger) {
+                    this._logger = _logger;
+                    this._logger.log("UserComponent Created");
                 }
-                LoginComponent = __decorate([
+                UserComponent = __decorate([
                     core_1.Component({
-                        selector: "my-login",
-                        templateUrl: "./app/my-login/my-login.html"
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], LoginComponent);
-                return LoginComponent;
+                        selector: "my-user",
+                        templateUrl: "./app/user/user.html"
+                    }),
+                    core_1.Injectable(), 
+                    __metadata('design:paramtypes', [logger_service_1.Logger])
+                ], UserComponent);
+                return UserComponent;
             })();
-            exports_1("LoginComponent", LoginComponent);
+            exports_1("UserComponent", UserComponent);
         }
     }
 });
-//# sourceMappingURL=my-login.component.js.map
+//# sourceMappingURL=user.component.js.map

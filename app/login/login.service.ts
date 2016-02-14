@@ -9,11 +9,13 @@ export class LoginService {
         this._logger.log('Login Service Created!');
     }
     
-    login( loginModel : Login) : Login {
-        this._logger.log('UserName::'+loginModel.username);
-        this._logger.log('Password::'+loginModel.password);
+    login( loginModel : Login) : Promise<any> {
         loginModel.token = Math.random().toString();
-        this._logger.log('Token::'+loginModel.token)
-        return  loginModel;
+        this._logger.log('Returning promise!!');
+        if ("shan" === loginModel.username && "password" === loginModel.password) {
+            return  Promise.resolve(loginModel);
+        }
+        return  Promise.reject("Invalid Credentials!");
     }
+
 }

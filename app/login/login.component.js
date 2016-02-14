@@ -26,23 +26,29 @@ System.register(["angular2/core", './login', '../logger/logger.service', './logi
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent(_logger, loginSvc) {
-                    this._logger = _logger;
+                function LoginComponent(loginModel, loginSvc, _logger) {
+                    this.loginModel = loginModel;
                     this.loginSvc = loginSvc;
+                    this._logger = _logger;
                     this._logger.log('LoginComponent created');
-                    this.loginForm = new login_1.Login();
+                    this._logger.log('loginModel is ' + loginModel);
+                    this.loginForm = loginModel;
                 }
                 LoginComponent.prototype.onSubmit = function () {
+                    var _this = this;
                     alert("Form Submitted!");
-                    this.loginForm = this.loginSvc.login(this.loginForm);
+                    this.loginSvc.login(this.loginForm).then(function (lModel) { _this.loginForm = lModel; _this._logger.log(_this.toString()); }).catch(function (errMsg) { return _this._logger.log(errMsg); });
+                };
+                LoginComponent.prototype.toString = function () {
+                    return JSON.stringify(this.loginModel);
                 };
                 LoginComponent = __decorate([
                     core_1.Component({
                         selector: "my-login",
                         templateUrl: "./app/login/login.html",
-                        providers: [login_service_1.LoginService]
+                        providers: [login_service_1.LoginService, login_1.Login]
                     }), 
-                    __metadata('design:paramtypes', [logger_service_1.Logger, login_service_1.LoginService])
+                    __metadata('design:paramtypes', [login_1.Login, login_service_1.LoginService, logger_service_1.Logger])
                 ], LoginComponent);
                 return LoginComponent;
             })();

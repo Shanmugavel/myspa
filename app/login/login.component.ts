@@ -6,19 +6,25 @@ import {LoginService} from './login.service'
 @Component( {
     selector : "my-login",
     templateUrl : "./app/login/login.html",
-    providers : [LoginService]
+    providers : [LoginService, Login]
 } )
 export class LoginComponent {
     
     public loginForm:Login;
     
-    constructor(private _logger:Logger, private loginSvc : LoginService) {
+    constructor(private loginModel:Login, private loginSvc : LoginService, private _logger:Logger) {
         this._logger.log('LoginComponent created');
-        this.loginForm = new Login();
+        this._logger.log('loginModel is '+loginModel);
+        this.loginForm = loginModel;
     }
     
     onSubmit() : void {
         alert("Form Submitted!");
-        this.loginForm = this.loginSvc.login(this.loginForm);
+        this.loginSvc.login(this.loginForm).then( lModel => {this.loginForm = lModel;  this._logger.log(this.toString())}).catch( errMsg => this._logger.log(errMsg));
+    }
+    
+        
+    toString() : string {
+        return JSON.stringify(this.loginModel);
     }
 }
