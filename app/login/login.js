@@ -22,8 +22,12 @@ System.register(['angular2/core', '../logger/logger.service'], function(exports_
             Login = (function () {
                 function Login(_logger) {
                     this._logger = _logger;
+                    this.isAuthenticated = false;
                     this._logger.log('Login  model created');
                 }
+                Login.prototype.toString = function () {
+                    return JSON.stringify(this);
+                };
                 Login = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [logger_service_1.Logger])

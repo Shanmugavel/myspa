@@ -1,11 +1,6 @@
 <h1>Shan's SPA</h1>
-<nav>
+<nav *ngIf="auth()">
     <a [routerLink]="['User']">User</a>
     <a [routerLink]="['Home']">Home</a>
 </nav>
 <router-outlet></router-outlet>
-<!--
-<my-login></my-login>
-<my-home></my-home>
-<my-user></my-user>
--->

@@ -26,10 +26,12 @@ System.register(['angular2/core', '../logger/logger.service'], function(exports_
                 }
                 LoginService.prototype.login = function (loginModel) {
                     loginModel.token = Math.random().toString();
-                    this._logger.log('Returning promise!!');
                     if ("shan" === loginModel.username && "password" === loginModel.password) {
+                        loginModel.isAuthenticated = true;
+                        this._logger.log(loginModel.toString());
                         return Promise.resolve(loginModel);
                     }
+                    this._logger.log(loginModel.toString());
                     return Promise.reject("Invalid Credentials!");
                 };
                 LoginService = __decorate([

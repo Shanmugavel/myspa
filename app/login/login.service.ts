@@ -11,10 +11,12 @@ export class LoginService {
     
     login( loginModel : Login) : Promise<any> {
         loginModel.token = Math.random().toString();
-        this._logger.log('Returning promise!!');
         if ("shan" === loginModel.username && "password" === loginModel.password) {
+            loginModel.isAuthenticated = true;
+            this._logger.log(loginModel.toString())
             return  Promise.resolve(loginModel);
         }
+        this._logger.log(loginModel.toString());
         return  Promise.reject("Invalid Credentials!");
     }
 
