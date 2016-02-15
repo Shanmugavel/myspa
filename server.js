@@ -1,15 +1,65 @@
-var finalhandler = require('finalhandler')
-var http = require('http')
-var serveStatic = require('serve-static')
+'use strict';
 
-// Serve up public/ftp folder
-var serve = serveStatic('./', {'index': ['index.html', 'index.htm']})
+const Hapi = require('hapi');
+const Good = require('good');
+const GoodConsole = require('good-console'); 
 
-// Create server
-var server = http.createServer(function(req, res){
-  var done = finalhandler(req, res)
-  serve(req, res, done)
-})
+const server = new Hapi.Server();
+server.connection({
+    host : '0.0.0.0',
+    port : process.env.PORT
+});
 
-// Listen
-server.listen(process.env.PORT);
+server.register(require('inert'), (err) => {
+    if(err) {
+        throw err;
+    } 
+    
+    /*server.route({
+        method : 'GET',
+        path : '/',
+        handler : function (request, reply) {
+            return reply.file('./index.html');
+        }
+    });*/
+    
+    server.route({
+        method : 'GET',
+        path : '/{param*}',
+        handler : {
+            directory : {
+                path : '.'
+            }
+        }
+    });
+});
+
+server.register({
+    register : Good,
+    options : {
+        reporters : [{
+            reporter : GoodConsole,
+            events : {
+                response : '*',
+                log : '*'
+            }
+        }]
+    }
+   }, (err) => {
+     if(err) {
+      throw err;  
+     }
+    server.start(() => {
+        console.log('Server Runnig at : ' + server.info.uri);   
+    });
+   }
+);
+    
+/*server.route({
+    method : 'GET',
+    path : '/hello',
+    handler : function (request, reply) {
+        return reply('Hello World!');
+    }
+});*/
+
