@@ -7,7 +7,7 @@ const config = require('config');
 const server = new Hapi.Server();
 
 server.connection({
-    host : '0.0.0.0',
+    host : config.get('server-info.host'),
     port : process.env.PORT
 });
 
