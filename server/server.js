@@ -3,12 +3,15 @@
 const Hapi = require('hapi');
 const Good = require('good');
 const GoodConsole = require('good-console'); 
-
+const config = require('config');
 const server = new Hapi.Server();
+
 server.connection({
     host : '0.0.0.0',
     port : process.env.PORT
 });
+
+console.log(config.get('server-info'));
 
 server.register(require('inert'), (err) => {
     if(err) {
