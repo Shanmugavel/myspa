@@ -28,7 +28,17 @@ server.register(require('inert'), (err) => {
         path : '/{param*}',
         handler : {
             directory : {
-                path : '.'
+                path : './client/'
+            }
+        }
+    });
+    
+    server.route({
+        method : 'GET',
+        path : '/node_modules/{param*}',
+        handler : {
+            directory : {
+                path : './node_modules/'
             }
         }
     });
