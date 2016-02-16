@@ -33,15 +33,6 @@ server.register(require('inert'), (err) => {
         }
     });
     
-    server.route({
-        method : 'GET',
-        path : '/node_modules/{param*}',
-        handler : {
-            directory : {
-                path : './node_modules/'
-            }
-        }
-    });
 });
 
 server.register({
@@ -65,11 +56,11 @@ server.register({
    }
 );
     
-/*server.route({
+server.route({
     method : 'GET',
     path : '/hello',
     handler : function (request, reply) {
         return reply('Hello World!');
     }
-});*/
+});
 
