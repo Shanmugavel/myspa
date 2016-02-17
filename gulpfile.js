@@ -1,8 +1,6 @@
 var gulp = require('gulp'), webserver = require('gulp-webserver');
-
-gulp.task('default', function() {
-  // place code for your default task here
-});
+var exec = require('child_process').exec;
+gulp.task('default', ['pack-static', 'start-node']);
 
 gulp.task('webserver', function () {
     gulp.src('.')
@@ -25,4 +23,20 @@ gulp.task('pack-static', function() {
   gulp.src('./node_modules/angular2/bundles/*.js').pipe(gulp.dest('./client/js/'));
   gulp.src('./node_modules/rxjs/bundles/*.js').pipe(gulp.dest('./client/js/'));
   gulp.src('./node_modules/jquery/dist/*.min.js').pipe(gulp.dest('./client/js/'));
+});
+
+gulp.task('start-node', function() {
+   var child =  exec('PORT=3000 NODE_CONFIG_DIR=./server/config node server/server.js', function (err, stdout, stderr) {
+        console.log('Hi');
+        console.log(stdout);
+        console.log(stderr);
+    //cb(err);
+    });
+child.stdout.on('data', function(data) {
+    console.log('stdout: ' + data);
+});
+child.stderr.on('data', function(data) {
+    console.log('stderr: ' + data);
+});
+
 });
