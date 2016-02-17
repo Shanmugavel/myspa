@@ -3,7 +3,10 @@
 const Hapi = require('hapi');
 const Good = require('good');
 const GoodConsole = require('good-console'); 
+const Inert = require('inert');
 const config = require('config');
+const routes = require('./routes/Routes');
+const staticRoute = require('./routes/Static');
 const server = new Hapi.Server();
 
 server.connection({
@@ -13,30 +16,22 @@ server.connection({
 
 console.log(config.get('server-info'));
 
-server.register(require('inert'), (err) => {
+
+server.register(Inert, (err) => {
     if(err) {
         throw err;
     } 
-    
-    /*server.route({
-        method : 'GET',
-        path : '/',
-        handler : function (request, reply) {
-            return reply.file('./index.html');
-        }
-    });*/
-    
+      
     server.route({
         method : 'GET',
         path : '/{param*}',
-        handler : {
-            directory : {
-                path : './client/'
-            }
-        }
+        config : staticRoute.getStaticConfig
     });
     
 });
+
+//Add user endpoints
+server.route(routes.userEndPoints);
 
 server.register({
     register : Good,
@@ -58,12 +53,5 @@ server.register({
     });
    }
 );
-    
-server.route({
-    method : 'GET',
-    path : '/hello',
-    handler : function (request, reply) {
-        return reply('Hello World!');
-    }
-});
+
 
