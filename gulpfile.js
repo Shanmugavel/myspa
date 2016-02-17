@@ -26,11 +26,9 @@ gulp.task('pack-static', function() {
 });
 
 gulp.task('start-node', function() {
-   var child =  exec('PORT=3000 NODE_CONFIG_DIR=./server/config node server/server.js', function (err, stdout, stderr) {
-        console.log('Hi');
-        console.log(stdout);
-        console.log(stderr);
-    //cb(err);
+   var child =  exec('node server/server.js', { env: {'PORT' : '3000', 'NODE_CONFIG_DIR' : './server/config'} },  function (err, stdout, stderr) {
+        //console.log(stdout);
+        //console.log(stderr);
     });
 child.stdout.on('data', function(data) {
     console.log('stdout: ' + data);
