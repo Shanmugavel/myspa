@@ -1,0 +1,44 @@
+{
+  "name": "Shan's SPA",
+  "description": "My first Single Page Application",
+  "main": "",
+  "authors": [
+    "Shan <shanmugavel.rs@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Shanmugavel/myspa",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.12.0",
+    "system.js": "^0.19.17",
+    "zone": "0.5.11",
+    "bootstrap": "3.3.6",
+    "es6-shim": "^0.33.3"
+  },
+  "install" : {
+     "path" : {
+         "css": "client/{name}/css",
+          "js": "client/{name}/js",
+          "eot" : "client/{name}/fonts",
+          "svg" : "client/{name}/fonts",
+          "woff" : "client/{name}/fonts",
+          "woff2" : "client/{name}/fonts",
+          "ttf" : "client/{name}/fonts",
+          "map" : "client/{name}/css"
+     },
+     "sources" : {
+      "system.js" : ["bower_components/system.js/dist/system.src.js","bower_components/system.js/dist/system-polyfills.js", "bower_components/system.js/dist/system-polyfills.js.map"],
+      "jquery" : ["bower_components/jquery/dist/jquery.min.js"],
+      "bootstrap" : ["bower_components/bootstrap/dist/js/*.js","bower_components/bootstrap/dist/fonts/*.*","bower_components/bootstrap/dist/css/*.*"]
+      
+     }
+  }
+}
