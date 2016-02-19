@@ -1,8 +1,19 @@
 var gulp = require('gulp'), del = require('del');
 var exec = require('child_process').exec;
 
-gulp.task('default', ['pack-static', 'start-node']);
+gulp.task('default', ['compile:typescript',  'start-node']);
 
+gulp.task('compile:typescript', function() {
+    var child =  exec('npm run tsc', { },  function (err, stdout, stderr) {
+    });
+    child.stdout.on('data', function(data) {
+        console.log('stdout: ' + data);
+    });
+    child.stderr.on('data', function(data) {
+        console.log('stderr: ' + data);
+    });
+
+});
 
 gulp.task('pack-static', function() {
   
